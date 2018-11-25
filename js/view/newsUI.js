@@ -9,13 +9,18 @@ class NewsUI {
         this._container.insertAdjacentHTML("afterbegin", template);
     }
 
+    ifNotFoundNews() {
+        const template = this._noNewsTemplate();
+        this._container.insertAdjacentHTML("afterbegin", template);
+    }
+
     clearContainer() {
         this._container.innerHTML = "";
     }
 
     _newsTemplate({urlToImage, url, title, description}) {
         return `
-        <div class="col s12 l6"> 
+        <div class="col s12 l6">
             <div class="card">
                 <div class="card-image">
                     <img src="${urlToImage || this._defaultImage}">
@@ -29,6 +34,12 @@ class NewsUI {
                 </div>
             </div>
         </div>
+        `;
+    }
+
+    _noNewsTemplate() {
+        return `
+        <div class="card-panel teal lighten-2">По данному запросу новостей не найдено</div>
         `;
     }
 }

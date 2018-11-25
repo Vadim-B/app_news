@@ -7,13 +7,16 @@ class NewsService {
         this._http = http;
     }
     /**
-     * 
-     * @param {*} callback 
-     * @param {*} country 
-     * @param {*} category 
+     *
+     * @param {*} callback
+     * @param {*} country
+     * @param {*} category
      */
     fetchTopHeadlines(callback, country = this._country, category = this._category) {
         this._http.get(`${this._url}/top-headlines?country=${country}&category=${category}&apiKey=${this._key}`, callback);
+    }
+    fetchSearchTopHeadlines(callback, search) {
+        this._http.get(`${this._url}/everything?q=${search}&apiKey=${this._key}`, callback);
     }
 }
 

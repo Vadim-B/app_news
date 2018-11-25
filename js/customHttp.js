@@ -1,12 +1,12 @@
 class CustomHttp {
     get(url, callback) {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", url);
-
-        xhr.addEventListener("load", () => {
-            callback(JSON.parse(xhr.responseText));
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    callback(data)
+                })
+                .catch(error => reject(error));
         });
-
-        xhr.send();
     }
 }
